@@ -2,53 +2,57 @@ export default [
     // gmr
     {
         name: 'gmr.setup',
-        property: 'gmr.setup()',
+        property: 'gmr.setup(div, constants)',
         returns: 'gmrInstance',
         desc: 'Used to create a gmrInstance within a div tag.',
         example: "gmr.setup()",
         props: [
-            ['id', 'string', 'Use this id when loading a new component.']
+            ['div', 'HTMLElement', 'The game instance will be created within this div.'],
+            ['constants', 'object', 'constants to control the game settings.']
         ]
     },
     // gmrInstance
     {
         name: 'gmrInstance.scene',
-        property: 'gmrInstance.scene()',
+        property: 'gmrInstance.scene(init)',
         returns: 'gmrScene',
         desc: 'Holds all the sprites and handles rendering for one scene.',
-        example: "gmrInstance.scene()",
+        example: "gmrInstance.scene(scene => {\n\n})",
         props: [
-            ['id', 'string', 'Use this id when loading a new component.']
+            ['init', 'fn', 'Scene initialization function.']
         ]
     },
     {
         name: 'gmrInstance.sprite',
         property: 'gmrInstance.sprite()',
         returns: 'gmrSprite',
-        desc: 'Holds all the sprites and handles rendering for one scene.',
+        desc: 'Creates a default gmrSprite.',
         example: "gmrInstance.sprite()",
-        props: [
-            ['id', 'string', 'Use this id when loading a new component.']
-        ]
+        props: []
     },
     {
         name: 'gmrInstance.prefab',
-        property: 'gmrInstance.prefab()',
+        property: 'gmrInstance.prefab(name, init, animations)',
         returns: 'gmrPrefab',
-        desc: 'Holds all the sprites and handles rendering for one scene.',
-        example: "gmrInstance.prefab()",
+        desc: 'Prefabs serve as factories that create sprites.',
+        example: "gmrInstance.prefab('player', sprite => {...}, playerAnimations)",
         props: [
-            ['id', 'string', 'Use this id when loading a new component.']
+            ['name', 'string', 'The name of the prefab.'],
+            ['init', 'function', 'The initialization function for the sprite.'],
+            ['animations', 'string[][]', 'Animations for the sprite. // [["Idle", "./asset/...", ...]]']
         ]
     },
     {
         name: 'gmrInstance.behavior',
-        property: 'gmrInstance.behavior()',
+        property: 'gmrInstance.behavior(name, initObj, initFn, ...extend)',
         returns: 'gmrBehavior',
-        desc: 'Holds all the sprites and handles rendering for one scene.',
+        desc: 'Adds functionality to a sprite.',
         example: "gmrInstance.behavior()",
         props: [
-            ['id', 'string', 'Use this id when loading a new component.']
+            ['name', 'string', 'The name of the behavior.'],
+            ['initObj', 'object', 'key-value properties that will be added to the sprite when the behavior is attached.'],
+            ['initFn', 'function', 'An initilization function that is ran when the behavior is attached.'],
+            ['extend', 'gmrBehavior', 'Behaviors that attach prior to this behavior attaching.']
         ]
     },
     // gmrScene - addSprite, removeSprite, onPreRender, onPostRender, addPrefab, removePrefab, spawn
