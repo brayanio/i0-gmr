@@ -1,0 +1,14 @@
+{
+  "name": "i0-gmr",
+  "version": "0.0.0",
+  "author": "brayanbyrdsong@gmail.com",
+  "description": "gmr website",
+  "main": "build/index.js",
+  "scripts": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brayanio/i0-gmr.git"
+  },
+  "keywords": [ "i0" ],
+  "license": "MIT"
+}
